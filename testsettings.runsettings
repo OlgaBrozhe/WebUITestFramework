@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <!-- Configurations that affect the Test Framework -->
+  <RunConfiguration>
+  </RunConfiguration>
+  <!-- Parameters used by tests at run time -->
+  <TestRunParameters>
+    <Parameter name="prefix" value="www" />
+    <Parameter name="environment" value="saucedemo" />
+    <Parameter name="domain" value=" Place_Holder " />
+    <Parameter name="topleveldomain" value="com" />
+    <Parameter name="delay" value="6" />
+    <Parameter name="browser" value="Chrome" />
+    <Parameter name="username" value="standard_user" />
+    <Parameter name="password" value="secret_sauce" />
+  </TestRunParameters>
+</RunSettings>
