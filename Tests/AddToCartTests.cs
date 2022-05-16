@@ -2,6 +2,7 @@
 //<summary>Tests adding to cart functionality.</summary>
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using TestWebUI.Helpers;
 using WebUITesting.Models;
 using WebUITesting.Pages;
@@ -15,6 +16,12 @@ namespace TestWebUI.Tests
         public void TestInit()
         {
             LoginToEnvironment();
+
+            // To get test data from Excel.
+           // inventoryDataDictionary = ExcelReader.GetExcelTestData(GetExcelInventoryTestDataFilepath(), excelSheet);
+
+            // To get test data from json.
+            inventoryDataDictionary = JsonReader.GetJsonTestData(GetJsonInventoryTestDataFilepath());
         }
 
         [TestCleanup]
@@ -23,13 +30,19 @@ namespace TestWebUI.Tests
             DriverDispose();
         }
 
+        //private static string excelSheet = "inventory";
+        //private IDictionary<int, List<string>> inventoryDataDictionary = new Dictionary<int, List<string>>() { };
+
         /// <summary>
         /// Tests end-to-end adding to cart.
         /// </summary>
         [TestMethod]
         public void Inventory_AddToCart()
         {
-            var itemToAdd = "Sauce Labs Backpack";
+            // Test data from Excel.
+            //var itemToAdd = inventoryDataDictionary[0][0];
+            //var itemCurrency = inventoryDataDictionary[0][2];
+            //var itemAmount = inventoryDataDictionary[0][3];
 
             // Count the items in the cart.
             PrimaryHeader primaryHeaderBefore = new PrimaryHeader();
@@ -37,11 +50,13 @@ namespace TestWebUI.Tests
             Log.Info($"There are {countBefore} items in the cart.");
 
             // From the inventory/ home page add an item to the cart.
-            InventoryPage = new InventoryPage(Driver);
+            InventoryPage = new AllInventoryPage(Driver);
             Assert.AreEqual("Add To Cart", InventoryPage.WhichBtnDisplayedAddOrRemove(itemToAdd));
 
             var itemAmountInventory = CommonHelper.GetAmountFromPrice(InventoryPage.GetItemPrice(itemToAdd));
             var itemCurrencyInventory = CommonHelper.GetCurrencyFromPrice(InventoryPage.GetItemPrice(itemToAdd));
+            Assert.AreEqual(itemCurrency, itemCurrencyInventory);
+            Assert.AreEqual(float.Parse(itemAmount), itemAmountInventory);
 
             InventoryPage.ClickItemBtn(itemToAdd);
             Assert.AreEqual("Remove", InventoryPage.WhichBtnDisplayedAddOrRemove(itemToAdd));
