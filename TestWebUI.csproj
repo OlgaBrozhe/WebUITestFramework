@@ -64,8 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="CommonBase.cs" />
+    <Compile Include="Helpers\CommonHelper.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\PrimaryHeader.cs" />
     <Compile Include="Pages\InventoryPage.cs" />
