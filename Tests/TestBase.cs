@@ -2,10 +2,14 @@
 //<summary>Test Base class.</summary>
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using NPOI.SS.Formula.Functions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using TestWebUI.Models.JsonObjects;
 using WebUITesting.Pages;
 
 namespace TestWebUI.Tests
@@ -43,15 +47,14 @@ namespace TestWebUI.Tests
         }
 
         /// <summary>
-        /// Gets json inventory test data file path.
+        /// Gets inventory data from json file.
         /// </summary>
-        /// <returns>The file path.</returns>
-        public string GetJsonInventoryTestDataFilepath()
+        /// <returns>Numerated items from json.</returns>
+        public static IEnumerable<InventoryItemFromJson> GetInventoryDataJson()
         {
-            var folderPath = "\\Data\\inventorydata.json";
-            var currentDir = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-            var filepath = currentDir + folderPath;
-            return filepath;
+            var filepath = "..//..//Data//inventorydata.json";
+            var jsonString = File.ReadAllText(filepath);
+            return JsonConvert.DeserializeObject<List<InventoryItemFromJson>>(jsonString);
         }
 
         /// <summary>

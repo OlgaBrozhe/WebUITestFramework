@@ -172,11 +172,9 @@
     <Compile Include="CommonBase.cs" />
     <Compile Include="Helpers\CommonHelper.cs" />
     <Compile Include="Helpers\ExcelReader.cs" />
-    <Compile Include="Helpers\JsonReader.cs" />
-    <Compile Include="Models\JsonObjects\InventoryItemCurrencyAmount.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\PrimaryHeader.cs" />
-    <Compile Include="Models\JsonObjects\InventoryItem.cs" />
+    <Compile Include="Models\JsonObjects\InventoryItemFromJson.cs" />
     <Compile Include="Pages\AllInventoryPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\PageBase.cs" />

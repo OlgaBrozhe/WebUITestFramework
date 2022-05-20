@@ -75,11 +75,6 @@ namespace WebUITesting.Pages
         internal AllInventoryPage InventoryPage { get; set; }
 
         /// <summary>
-        /// Gets/sets the InventoryItem.
-        /// </summary>
-        internal InventoryItemDetailsPage InventoryItemDetailsPage { get; set; }
-
-        /// <summary>
         /// Gets/sets the ShoppingCartPage.
         /// </summary>
         internal ShoppingCartPage ShoppingCartPage { get; set; }

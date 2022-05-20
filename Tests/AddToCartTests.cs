@@ -2,7 +2,8 @@
 //<summary>Tests adding to cart functionality.</summary>
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 using TestWebUI.Helpers;
 using WebUITesting.Models;
 using WebUITesting.Pages;
@@ -17,11 +18,8 @@ namespace TestWebUI.Tests
         {
             LoginToEnvironment();
 
-            // To get test data from Excel.
-           // inventoryDataDictionary = ExcelReader.GetExcelTestData(GetExcelInventoryTestDataFilepath(), excelSheet);
-
-            // To get test data from json.
-            inventoryDataDictionary = JsonReader.GetJsonTestData(GetJsonInventoryTestDataFilepath());
+            // Keep for notes: This is if I were to use test data from Excel.
+            //inventoryDataDictionary = ExcelReader.GetExcelTestData(GetExcelInventoryTestDataFilepath(), excelSheet);
         }
 
         [TestCleanup]
@@ -30,6 +28,7 @@ namespace TestWebUI.Tests
             DriverDispose();
         }
 
+        // Keep for notes: This is if I were to use test data from Excel.
         //private static string excelSheet = "inventory";
         //private IDictionary<int, List<string>> inventoryDataDictionary = new Dictionary<int, List<string>>() { };
 
@@ -39,10 +38,18 @@ namespace TestWebUI.Tests
         [TestMethod]
         public void Inventory_AddToCart()
         {
-            // Test data from Excel.
-            //var itemToAdd = inventoryDataDictionary[0][0];
-            //var itemCurrency = inventoryDataDictionary[0][2];
-            //var itemAmount = inventoryDataDictionary[0][3];
+            var inventoryData = GetInventoryDataJson();
+            int numberInventory = inventoryData.ToList().Count;
+            Random randomnumber = new Random();
+            int i = randomnumber.Next(0, numberInventory);
+            var itemToAdd = inventoryData.ToList()[i].InventoryName;
+            var itemCurrency = inventoryData.ToList()[i].PriceCurrency;
+            var itemAmount = inventoryData.ToList()[i].PriceAmount;
+
+            // Keep for notes: This is if I were to use test data from Excel.
+            //var itemToAdd = inventoryDataDictionary[i][0];
+            //var itemCurrency = inventoryDataDictionary[i][2];
+            //var itemAmount = inventoryDataDictionary[i][3];
 
             // Count the items in the cart.
             PrimaryHeader primaryHeaderBefore = new PrimaryHeader();
@@ -56,7 +63,7 @@ namespace TestWebUI.Tests
             var itemAmountInventory = CommonHelper.GetAmountFromPrice(InventoryPage.GetItemPrice(itemToAdd));
             var itemCurrencyInventory = CommonHelper.GetCurrencyFromPrice(InventoryPage.GetItemPrice(itemToAdd));
             Assert.AreEqual(itemCurrency, itemCurrencyInventory);
-            Assert.AreEqual(float.Parse(itemAmount), itemAmountInventory);
+            Assert.AreEqual(itemAmount, itemAmountInventory);  // float.Parse(itemAmount) if taken from excel.
 
             InventoryPage.ClickItemBtn(itemToAdd);
             Assert.AreEqual("Remove", InventoryPage.WhichBtnDisplayedAddOrRemove(itemToAdd));
