@@ -7,6 +7,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System;
 using System.Threading;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace WebUITesting.Pages
 {
@@ -40,9 +42,11 @@ namespace WebUITesting.Pages
             switch (browser)
             {
                 case "Firefox":
+                    new DriverManager().SetUpDriver(new FirefoxConfig());
                     Driver = new FirefoxDriver();
                     break;
                 case "Chrome":
+                    new DriverManager().SetUpDriver(new ChromeConfig());
                     Driver = new ChromeDriver();
                     break;
                 default:
@@ -70,9 +74,9 @@ namespace WebUITesting.Pages
         internal LoginPage LoginPage { get; set; }
 
         /// <summary>
-        /// Gets/sets the InventoryPage.
+        /// Gets/sets the AllInventoryPage.
         /// </summary>
-        internal InventoryPage InventoryPage { get; set; }
+        internal AllInventoryPage InventoryPage { get; set; }
 
         /// <summary>
         /// Gets/sets the ShoppingCartPage.

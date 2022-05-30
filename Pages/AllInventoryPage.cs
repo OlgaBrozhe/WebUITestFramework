@@ -9,7 +9,7 @@ namespace WebUITesting.Pages
     using OpenQA.Selenium;
     using OpenQA.Selenium.Support.UI;
 
-    internal class InventoryPage : PageBase
+    internal class AllInventoryPage : PageBase
     {
         private static string itemNameInventoryPage;
 
@@ -17,7 +17,7 @@ namespace WebUITesting.Pages
         /// Initializes an instance of <see cref="HomePage"/> class.
         /// </summary>
         /// <param name="driver">Web driver.</param>
-        public InventoryPage(IWebDriver driver)
+        public AllInventoryPage(IWebDriver driver)
         {
             Driver = driver;
             Assert.AreEqual(ExpectedUrl, Driver.Url);
@@ -41,7 +41,7 @@ namespace WebUITesting.Pages
         /// <returns>Item price.</returns>
         internal string GetItemPrice(string itemName)
         {
-            Log.Info($"InventoryPage.{new StackFrame(0).GetMethod().Name}.");
+            Log.Info($"AllInventoryPage.{new StackFrame(0).GetMethod().Name}.");
             itemNameInventoryPage = itemName;
             var price = ItemPrice.Text;
             Log.Info($"Item price is {price}.");

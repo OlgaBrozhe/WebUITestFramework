@@ -33,8 +33,8 @@ namespace WebUITesting.Pages
         /// <summary>
         /// Login.
         /// </summary>
-        /// <returns>InventoryPage.</returns>
-        internal InventoryPage Login()
+        /// <returns>AllInventoryPage.</returns>
+        internal AllInventoryPage Login()
         {
             Log.Info($"LoginPage.{new StackFrame(0).GetMethod().Name}.");
             var username = Username;
@@ -46,7 +46,7 @@ namespace WebUITesting.Pages
             EnterPassword(password);
             InventoryPage = ClickLoginBtn();
             Log.Info("Login completed.");
-            return new InventoryPage(Driver);
+            return new AllInventoryPage(Driver);
         }
 
         /// <summary>
@@ -74,13 +74,13 @@ namespace WebUITesting.Pages
         /// <summary>
         /// Clicks Login button.
         /// </summary>
-        /// <returns>InventoryPage.</returns>
-        internal InventoryPage ClickLoginBtn()
+        /// <returns>AllInventoryPage.</returns>
+        internal AllInventoryPage ClickLoginBtn()
         {
             Log.Info($"LoginPage.{new StackFrame(0).GetMethod().Name}.");
             LoginBtn.Click();
             Log.Info("Login button was clicked.");
-            return new InventoryPage(Driver);
+            return new AllInventoryPage(Driver);
         }
     }
 }
