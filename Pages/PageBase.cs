@@ -4,6 +4,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using System;
 using System.Threading;
@@ -48,6 +49,10 @@ namespace WebUITesting.Pages
                 case "Chrome":
                     new DriverManager().SetUpDriver(new ChromeConfig());
                     Driver = new ChromeDriver();
+                    break;
+                case "Edge":
+                    new DriverManager().SetUpDriver(new EdgeConfig());
+                    Driver = new EdgeDriver();
                     break;
                 default:
                     throw new Exception("Unknown browser.");
